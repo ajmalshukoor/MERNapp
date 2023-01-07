@@ -1,0 +1,105 @@
+const travelModel = require('../model/travelmodel');
+const mongoose = require('mongoose');
+
+// GET
+const getTravels = async (req, res) =>{
+    const travels = await travelModel.find({}).sort({createdAt: -1})
+    try{
+        if(travels.length > 0){
+            res.status(200).json(travels)
+        }
+    }
+    catch(err){
+        res.status(400).json({err:"No items to show!"})
+    }
+}
+
+// GET one
+const getOneTravel = async (req, res) =>{
+    const {id} = req.params
+
+    if(!mongoose.Types.ObjectId.isValid(id)){
+        return res.status(404).json({err: "No such travels"})
+    }
+    try{
+       const  travel = await travelModel.findById(id)
+       res.status(200).json(travel)
+    }
+    catch(err){
+        console.log(err)
+    }
+}
+
+// POST 
+const postTravel = async (req, res) =>{
+    const {name, description} = req.body
+
+    let emptyFields = [];
+
+    
+    if(!name){
+        emptyFields.push('name')
+    }
+    if(!description){
+        emptyFields.push('description')
+    }
+    if(emptyFields.length > 0){
+        console.log(emptyFields, name, description)
+        return res.status(400).json({error: 'Please fill in all fields', emptyFields})
+    }
+    
+    try{
+        const travel = await travelModel.create({name, description})
+        res.status(200).json(travel)
+    }
+    catch(err){
+        res.status(400).json({err: err.message})
+    }
+}
+
+// PATCH
+const patchTravel = async (req, res) =>{
+    const {id} = req.params
+
+    if(!mongoose.Types.ObjectId.isValid(id)){
+        return res.status(400).json({error: "No such travels"})
+    }
+    try{
+       const  travel = await travelModel.findOneAndUpdate({_id: id}, {...req.body})
+       if(!travel){
+        return res.status(400).json({error: "Could not update"})
+       }
+       res.status(200).json(travel)
+    }
+    catch(err){
+        console.log(err)
+    }
+}
+
+// DELETE
+const deleteTravel = async (req, res) =>{
+    const {id} = req.params
+
+    if(!mongoose.Types.ObjectId.isValid(id)){
+        return res.status(400).json({error: "No such travels"})
+    }
+    try{
+        const  travel = await travelModel.findOneAndDelete({_id: id})
+        if(!travel){
+         return res.status(400).json({error: "Could not delete"})
+        }
+        res.status(200).json(travel)
+     }
+     catch(err){
+         console.log(err)
+     }
+}
+
+
+module.exports = {
+    getTravels,
+    getOneTravel,
+    postTravel,
+    patchTravel,
+    deleteTravel
+}
