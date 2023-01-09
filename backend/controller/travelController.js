@@ -3,7 +3,9 @@ const mongoose = require('mongoose');
 
 // GET
 const getTravels = async (req, res) =>{
-    const travels = await travelModel.find({}).sort({createdAt: -1})
+    const user_id = req.user._id
+
+    const travels = await travelModel.find({user_id}).sort({createdAt: -1})
     try{
         if(travels.length > 0){
             res.status(200).json(travels)
@@ -49,7 +51,8 @@ const postTravel = async (req, res) =>{
     }
     
     try{
-        const travel = await travelModel.create({name, description})
+        const user_id = req.user._id
+        const travel = await travelModel.create({name, description, user_id})
         res.status(200).json(travel)
     }
     catch(err){

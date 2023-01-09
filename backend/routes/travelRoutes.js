@@ -7,7 +7,12 @@ const {
     deleteTravel,
 } = require("../controller/travelController");
 
+const requireAuth = require('../middleware/requireAuth')
+
 const router = express.Router();
+
+//authorizing all routes
+router.use(requireAuth);
 
 router.get('/', getTravels)
 

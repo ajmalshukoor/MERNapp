@@ -1,12 +1,17 @@
 import useTravelContext from "../hooks/useTravelContext"
+import { useAuthContext } from "../hooks/useAuthContext"
 
 export default function TravelDetails({data}){
 
     const {dispatch} = useTravelContext()
+    const {user} = useAuthContext()
 
     const handleClick = async () => {
+        if(!user) return
+
         const response = await fetch('/api/travelDiary/'+data._id, {
-            method:'DELETE'
+            method:'DELETE',
+            headers: {'Authorization': `Bearer ${user.token}`}
         })
         const json = await response.json();
 
@@ -16,7 +21,7 @@ export default function TravelDetails({data}){
     }
 
     return(
-        <div className="card card-custom mt-5 ms-2 w-100 border-0 shadow p-3 mb-5 bg-body-tertiary rounded" style={{width: "18rem"}}>
+        <div className="card card-custom mt-5 ms-4 w-100 border-0 shadow p-3 mb-5 bg-body-tertiary rounded" style={{width: "18rem"}}>
             <div className="card-body">
                 <div className="row align-items-center">
                     <div className="col-11">

@@ -1,5 +1,6 @@
 import {useState} from "react";
 import useTravelContext from "../hooks/useTravelContext";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 export default function TravelForm() {
     const [name, setName] = useState("");
@@ -7,9 +8,14 @@ export default function TravelForm() {
     const [error, setError] = useState(null);
     const [emptyField, setEmptyField] = useState([]);
     const {dispatch} = useTravelContext()
+    const {user} = useAuthContext()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+
+        if(!user) {
+            setError('You must be logged in')
+        }
 
         const content = {name, description}
 
@@ -17,9 +23,11 @@ export default function TravelForm() {
             method: 'POST',
             body: JSON.stringify(content),
             headers:{
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${user.token}`
             }
         })
+
         const json = await response.json()
 
         if(!response.ok){
