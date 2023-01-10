@@ -10,6 +10,10 @@ const travelSchema = new Schema({
         type:String,
         required:true
     },
+    date:{
+        type:Date,
+        required:true
+    },
     user_id: {
         type: String,
         required: true

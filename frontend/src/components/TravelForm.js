@@ -1,8 +1,10 @@
 import {useState} from "react";
 import useTravelContext from "../hooks/useTravelContext";
 import { useAuthContext } from "../hooks/useAuthContext";
+import DatePicker from "react-datepicker"
 
 export default function TravelForm() {
+    const [date, setDate] = useState();
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [error, setError] = useState(null);
@@ -17,7 +19,7 @@ export default function TravelForm() {
             setError('You must be logged in')
         }
 
-        const content = {name, description}
+        const content = {name, description, date}
 
         const response = await fetch('/api/travelDiary/', { 
             method: 'POST',
@@ -44,9 +46,19 @@ export default function TravelForm() {
         }
     }
     return(
-        <form className="col p-5 mt-5" onSubmit={handleSubmit}>
-            <div className="mb-3">
-                <label htmlFor="exampleInputEmail1" className="form-label fs-6">Place name</label>
+        <form className="col-sm-12 col-md-6 p-5 mt-5" onSubmit={handleSubmit}>
+            <div className="form-custom">
+                <label htmlFor="date" className="form-label fs-6">When</label>
+                <DatePicker
+                 className={`w-100 form-control shadow p-3 mb-5 bg-body-tertiary rounded ${emptyField.includes('date') ? 'border border-danger':''}`}
+                 showMonthDropdown
+                 selected={date}
+                 value={date}
+                 onChange={(e) => setDate(e)}
+                />
+            </div>
+            <div className="form-custom">
+                <label htmlFor="exampleInputEmail1" className="form-label fs-6">Where</label>
                 <input 
                  type="text"
                  value={name} 
@@ -56,7 +68,7 @@ export default function TravelForm() {
                  aria-describedby="emailHelp"
                 />
             </div>
-            <div className="mb-3">
+            <div className="form-custom">
                 <label htmlFor="exampleInputPassword1" className="form-label fs-6">How was the experience?</label>
                 <textarea
                  type="text"
@@ -66,6 +78,7 @@ export default function TravelForm() {
                  id="exampleInputPassword1"
                  />
             </div>
+
             {error && <div className="mb-2 fs-6 p-3 bg-danger bg-opacity-10 border border-danger rounded">{error}</div>}
             <button type="submit" value={description} className="btn btn-outline-info fs-6 fw-bolder">Add</button>
         </form>

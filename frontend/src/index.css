@@ -1,3 +1,5 @@
+@import "~react-datepicker/dist/react-datepicker.css";
+@import "~react-image-gallery/styles/css/image-gallery.css";
 
 body {
   font-size: 12px;
@@ -11,7 +13,7 @@ body {
 }
 
 .card-custom{
-  font-size: 10px;
+  font-size: 13px;
 }
 
 .card-header{
@@ -19,7 +21,7 @@ body {
 }
 
 .cards-custom{
-  margin-top: 55px;
+  margin-top: 60px;
 }
 
 .btn{
@@ -34,11 +36,27 @@ body {
 
 }
 
+.form-custom{
+  margin-bottom:-20px;
+  width: 80%;
+}
+
+.react-datepicker-popper{
+  margin-top: -45px;
+}
 @media (max-width: 768px) {
   .auth-custom{
     margin-top: 30%;
     width: 65%;
     height: 50%;
+  }
+  .form-custom{
+    margin-bottom:-20px;
+    width: 100%
+  }
+  .cards-custom{
+    margin: 40px 40px 40px 35px;
+    width: 85%;
   }
 }
 
@@ -46,8 +64,22 @@ body {
   .auth-custom{
     margin-top: 12%;
     width: 30%;
-}}
+  }
 
+}
+footer {
+  position:fixed;
+  left:0px;
+  bottom:30px;
+  height:30px;
+  width:100%;
+}
+
+.images-custom{
+  width:40%;
+  margin:auto;
+  margin-top: 100px;
+}
 /* @media (max-width: 500px){
 
 } */

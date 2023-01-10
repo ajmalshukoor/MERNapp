@@ -23,9 +23,7 @@ export default function DeleteConfirm({show, handleClose, data}) {
     return(
         <div>
             <Modal show={show} onHide={handleClose}>
-                <Modal.Header>
-                <Modal.Title className="mx-auto">Confirm Delete</Modal.Title>
-                </Modal.Header>
+                <Modal.Title className="mx-auto mt-3 text-secondary">Confirm Delete</Modal.Title>
                 <Modal.Body>Do you want to delete this item?</Modal.Body>
                 <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>
