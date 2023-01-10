@@ -33,7 +33,10 @@ body {
   background: #f1f1f1;
   border-radius: 10%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 
+.arrow-custom:hover{
+  cursor: pointer;
 }
 
 .form-custom{
@@ -58,6 +61,19 @@ body {
     margin: 40px 40px 40px 35px;
     width: 85%;
   }
+  .images-custom{
+    width:80%;
+    margin:auto;
+    margin-top: 10px;
+  }
+  .uploadform-custom{
+    margin-top: 110px;
+    width: 100%;
+    margin-left: 20%;
+  }
+  .description-custom{
+    width: 100%;
+  }
 }
 
 @media (min-width: 768px) {
@@ -65,7 +81,19 @@ body {
     margin-top: 12%;
     width: 30%;
   }
-
+  .images-custom{
+    width:60%;
+    margin:auto;
+    margin-top: 10px;
+  }
+  .uploadform-custom{
+    margin-top: 70px;
+    width: 60%;
+    margin-left: 40%;
+  }
+  .description-custom{
+    width: 70%;
+  }
 }
 footer {
   position:fixed;
@@ -75,11 +103,11 @@ footer {
   width:100%;
 }
 
-.images-custom{
-  width:40%;
-  margin:auto;
-  margin-top: 100px;
+.uploadbutton-custom{
+  height: 55px;
+  margin-top: 3px;
 }
-/* @media (max-width: 500px){
 
-} */
+.createddate-custom{
+  top:0;
+}

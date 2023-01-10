@@ -4,13 +4,13 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import DatePicker from "react-datepicker"
 
 export default function TravelForm() {
-    const [date, setDate] = useState();
+    const [date, setDate] = useState("");
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [error, setError] = useState(null);
     const [emptyField, setEmptyField] = useState([]);
-    const {dispatch} = useTravelContext()
-    const {user} = useAuthContext()
+    const {dispatch} = useTravelContext();
+    const {user} = useAuthContext();
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -77,6 +77,16 @@ export default function TravelForm() {
                  className={`form-control shadow p-3 mb-5 bg-body-tertiary rounded ${emptyField.includes('description') ? 'border border-danger':''}`}
                  id="exampleInputPassword1"
                  />
+            </div>
+            <div className="form-custom">
+                <label htmlFor="" className="form-label fs-6">Upload your memories</label>
+                <input
+                 type="file"
+                 accept=".png, .jpg, .jpeg"
+                 name="photo"
+                 className="form-control shadow p-3 mb-5 bg-body-tertiary rounded"
+                //  onChange={(e) => setPhoto(e.target.files[0])}
+                />
             </div>
 
             {error && <div className="mb-2 fs-6 p-3 bg-danger bg-opacity-10 border border-danger rounded">{error}</div>}

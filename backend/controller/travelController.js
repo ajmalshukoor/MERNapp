@@ -1,4 +1,5 @@
 const travelModel = require('../model/travelmodel');
+const upload = require('../middleware/upload')
 const mongoose = require('mongoose');
 
 // GET
