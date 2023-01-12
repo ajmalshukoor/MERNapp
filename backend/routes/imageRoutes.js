@@ -8,7 +8,7 @@ const {
 
 const router = express.Router();
 
-const upload = multer({dest: 'uploads/'})
+const upload = require('../middleware/upload')
 
 
 router.post('/', upload.single('image'), uploadImage)

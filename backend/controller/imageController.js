@@ -25,24 +25,22 @@ const uploadImage = async (req, res) => {
     catch(err){
         res.status(400).json({err: err.message})
     }
-    // console.log('post api called in image routes')
 }
 
 // GET IMAGE
 const getImage = async (req, res) =>{ 
-    // const {id} = req.params
-    // const images = await imageModel.find({item_id: id}).sort({createdAt: -1})
-    // console.log(images)
-    // try{
-    //     if(images.length > 0){
-    //         res.status(200).json(images)
-    //     }
-    // }
-    // catch(err){
-    //     res.status(400).json({err:"No items to show!"})
-    // }
-    console.log('get api called in image routes')
+    const item_id = req.params.id
 
+    const images = await imageModel.find({item_id}).sort({createdAt: -1})
+    console.log(images)
+    try{
+        if(images.length > 0){
+            res.status(200).json(images)
+        }
+    }
+    catch(err){
+        res.status(400).json({err:"No items to show!"})
+    }
 }
 
 module.exports = {

@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import ImageGallery from 'react-image-gallery';
 import useTravelContext from "../hooks/useTravelContext"
 import { useAuthContext } from "../hooks/useAuthContext";
@@ -7,8 +7,21 @@ import Footer from '../components/Footer'
 
 export default function ImageGall(){
   const {travelContent} = useTravelContext()
-  const {imageContent} = useImageContext()
+  const {state} = useImageContext()
   const [image, setImage] = useState();
+  const [allImages, setAllImages]= useState(`http://localhost:3000/api/image/asdasda/icons8-no-image-80.png`)
+  // const [allImages, setAllImages]= useState([
+  //   {
+  //     original: 'https://picsum.photos/id/1015/1000/600/',
+  //     thumbnail: 'https://picsum.photos/id/1015/250/150/',
+  //   },
+  //   {
+  //     original: 'https://picsum.photos/id/1019/1000/600/',
+  //     thumbnail: 'https://picsum.photos/id/1019/250/150/',
+  //   },
+  // ]);
+
+  console.log(state)
   const {user} = useAuthContext();
   // const imagePath = imageContent[0].imgUrl.split('\\')[1]
 
@@ -29,20 +42,17 @@ export default function ImageGall(){
     console.log(json)
   }
 
-  const images = [
-    // {
-      // original: `http://localhost:3000/api/travelDiary/${imageContent[0].item_id}/${imagePath}`,
-      // thumbnail: `http://localhost:3000/api/travelDiary/${imageContent[0].item_id}/${imagePath}`,
-    // },
-    {
-      original: 'https://picsum.photos/id/1015/1000/600/',
-      thumbnail: 'https://picsum.photos/id/1015/250/150/',
-    },
-    {
-      original: 'https://picsum.photos/id/1019/1000/600/',
-      thumbnail: 'https://picsum.photos/id/1019/250/150/',
-    },
-  ];
+  useEffect(() => {
+    if(state.length > 0){
+      if(travelContent[0]._id != state[0].item_id){
+        setAllImages('http://localhost:3000/api/image/asdasda/icons8-no-image-80.png')
+      }
+      if(travelContent[0]._id == state[0].item_id){
+        setAllImages(`http://localhost:3000/api/image/${state[0].item_id}/${state[0].imgUrl.split('\\')[1]}.png`)
+      } 
+    }
+  },[state])
+
   return(
     <>
     {travelContent &&
@@ -67,7 +77,8 @@ export default function ImageGall(){
             <p className="text-center text-secondary mb-2">Visited: {travelContent[0].date.split('T')[0]} <br></br>Entry Date: {travelContent[0].createdAt.split('T')[0]}</p>
             <p>{travelContent[0].description}</p>
           </div>
-          <ImageGallery items={images}/>
+          {/* <ImageGallery items={allImages}/> */}
+          <img src={allImages} className="imageGall-custom w-50"></img>
         </div>
       </div>
     </div>

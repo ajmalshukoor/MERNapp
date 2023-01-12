@@ -12,29 +12,34 @@ export default function TravelDetails({data}){
     const [show, setShow] = useState(false)
     const handleClose = () => setShow(false)
     const handleShow = () => setShow(true)
-    const {travelContent, dispatch} = useTravelContext()
-    const { dispatch: imgDispatch} = useImageContext()
+    const {dispatch} = useTravelContext()
+    const {state, setState} = useImageContext()
     const {user} = useAuthContext()
 
+    // const handleClick = async () => {
+    //     const response = await fetch(`/api/travelDiary/${data._id}`, {
+    //         headers: {'Authorization': `Bearer ${user.token}`},
+    //     })
+    //     const json = await response.json()
+    //     if(response.ok){
+    //         dispatch({type:'SHOW_ONE', payload: json})
+    //     } 
+    // }
     const handleClick = async () => {
-        console.log(data._id)
         const response = await fetch(`/api/travelDiary/${data._id}`, {
             headers: {'Authorization': `Bearer ${user.token}`},
         })
         const json = await response.json()
         if(response.ok){
             dispatch({type:'SHOW_ONE', payload: json})
+
+            const imgResponse = await fetch(`/api/image/${data._id}/`, {
+                headers: {'Authorization': `Bearer ${user.token}`}
+            })
+            const imgJson = await imgResponse.json()
+            setState(imgJson)
         } 
     }
-
-    useEffect(() => {
-        const fetchImage = async () => {
-            
-        }
-        if(user){
-            fetchImage()
-        }
-    }, [dispatch, user])
 
     return(
         <div className="card card-custom mt-5 w-100 border-0 shadow p-3 mb-5 bg-body-tertiary rounded" style={{width: "18rem"}}>
