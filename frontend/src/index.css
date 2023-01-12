@@ -79,6 +79,10 @@ body {
   .description-custom{
     width: 100%;
   }
+  .imageGall-custom{
+    margin-top: 20px;
+    width: 100% !important;
+  }
 }
 
 @media (min-width: 768px) {
@@ -114,3 +118,4 @@ body {
 .imageGall-custom{
   margin-bottom: 55px;
 }
+

@@ -10,20 +10,8 @@ export default function ImageGall(){
   const {state} = useImageContext()
   const [image, setImage] = useState();
   const [allImages, setAllImages]= useState(`http://localhost:3000/api/image/asdasda/icons8-no-image-80.png`)
-  // const [allImages, setAllImages]= useState([
-  //   {
-  //     original: 'https://picsum.photos/id/1015/1000/600/',
-  //     thumbnail: 'https://picsum.photos/id/1015/250/150/',
-  //   },
-  //   {
-  //     original: 'https://picsum.photos/id/1019/1000/600/',
-  //     thumbnail: 'https://picsum.photos/id/1019/250/150/',
-  //   },
-  // ]);
 
-  console.log(state)
   const {user} = useAuthContext();
-  // const imagePath = imageContent[0].imgUrl.split('\\')[1]
 
   const formData = new FormData()
   formData.append('image', image)
@@ -39,7 +27,7 @@ export default function ImageGall(){
       },
     })
     const json = await response.json()
-    console.log(json)
+    setImage('')
   }
 
   useEffect(() => {
@@ -48,7 +36,7 @@ export default function ImageGall(){
         setAllImages('http://localhost:3000/api/image/asdasda/icons8-no-image-80.png')
       }
       if(travelContent[0]._id == state[0].item_id){
-        setAllImages(`http://localhost:3000/api/image/${state[0].item_id}/${state[0].imgUrl.split('\\')[1]}.png`)
+        setAllImages(`http://localhost:3000/api/image/${state[0].item_id}/${state[0].imgUrl.split('\\')[1]}`)
       } 
     }
   },[state])
@@ -78,7 +66,7 @@ export default function ImageGall(){
             <p>{travelContent[0].description}</p>
           </div>
           {/* <ImageGallery items={allImages}/> */}
-          <img src={allImages} className="imageGall-custom w-50"></img>
+          <img src={allImages} className="imageGall-custom w-50 border border-info"></img>
         </div>
       </div>
     </div>
