@@ -5,7 +5,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Footer from './components/Footer';
-import ImageGall from './components/ImageGall';
+import ImageGall from './pages/ImageGall';
 
 function App() {
   const {user} = useAuthContext()
@@ -23,7 +23,6 @@ function App() {
           </Routes>
         </div>
       </BrowserRouter>
-      <Footer/>
     </div>
   );
 }

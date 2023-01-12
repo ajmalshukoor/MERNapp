@@ -4,6 +4,7 @@ import DeleteConfirm from "./DeleteConfirm"
 import formatDistance from 'date-fns/formatDistance'
 import { useAuthContext } from "../hooks/useAuthContext";
 import useTravelContext from '../hooks/useTravelContext';
+import useImageContext from '../hooks/useImageContext';
 
 
 export default function TravelDetails({data}){
@@ -11,7 +12,8 @@ export default function TravelDetails({data}){
     const [show, setShow] = useState(false)
     const handleClose = () => setShow(false)
     const handleShow = () => setShow(true)
-    const { dispatch} = useTravelContext()
+    const {travelContent, dispatch} = useTravelContext()
+    const { dispatch: imgDispatch} = useImageContext()
     const {user} = useAuthContext()
 
     const handleClick = async () => {
@@ -25,6 +27,14 @@ export default function TravelDetails({data}){
         } 
     }
 
+    useEffect(() => {
+        const fetchImage = async () => {
+            
+        }
+        if(user){
+            fetchImage()
+        }
+    }, [dispatch, user])
 
     return(
         <div className="card card-custom mt-5 w-100 border-0 shadow p-3 mb-5 bg-body-tertiary rounded" style={{width: "18rem"}}>

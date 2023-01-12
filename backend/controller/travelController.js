@@ -1,5 +1,4 @@
 const travelModel = require('../model/travelmodel');
-const upload = require('../middleware/upload')
 const mongoose = require('mongoose');
 
 // GET
@@ -36,7 +35,6 @@ const getOneTravel = async (req, res) =>{
 // POST 
 const postTravel = async (req, res) =>{
     const {name, description, date} = req.body
-
     let emptyFields = [];
     
     if(!name){
@@ -106,5 +104,5 @@ module.exports = {
     getOneTravel,
     postTravel,
     patchTravel,
-    deleteTravel
+    deleteTravel,
 }

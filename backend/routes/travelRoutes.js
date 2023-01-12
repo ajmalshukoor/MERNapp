@@ -1,4 +1,5 @@
 const express = require("express");
+
 const {
     getTravels,
     getOneTravel,
@@ -23,6 +24,5 @@ router.post('/', postTravel)
 router.delete('/:id', deleteTravel)
 
 router.patch('/:id', patchTravel)
-
 
 module.exports = router

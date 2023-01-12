@@ -78,16 +78,6 @@ export default function TravelForm() {
                  id="exampleInputPassword1"
                  />
             </div>
-            <div className="form-custom">
-                <label htmlFor="" className="form-label fs-6">Upload your memories</label>
-                <input
-                 type="file"
-                 accept=".png, .jpg, .jpeg"
-                 name="photo"
-                 className="form-control shadow p-3 mb-5 bg-body-tertiary rounded"
-                //  onChange={(e) => setPhoto(e.target.files[0])}
-                />
-            </div>
 
             {error && <div className="mb-2 fs-6 p-3 bg-danger bg-opacity-10 border border-danger rounded">{error}</div>}
             <button type="submit" value={description} className="btn btn-outline-info fs-6 fw-bolder">Add</button>

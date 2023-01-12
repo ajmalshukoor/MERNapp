@@ -3,7 +3,7 @@ import TravelDetails from "../components/TravelDetails";
 import TravelForm from "../components/TravelForm";
 import useTravelContext from "../hooks/useTravelContext"
 import { useAuthContext } from "../hooks/useAuthContext";
-
+import Footer from '../components/Footer';
 
 export default function Home(){
     const {travelContent, dispatch } = useTravelContext()
@@ -31,6 +31,7 @@ export default function Home(){
                 {travelContent && travelContent.map(each => <TravelDetails data={each} key={each._id}/>)}
                 {(!travelContent || travelContent.length === 0)  && <h4 className="mt-5 text-center">Nothing to show!</h4>}
             </div>
+            <Footer/>
         </div>
     )
 }
