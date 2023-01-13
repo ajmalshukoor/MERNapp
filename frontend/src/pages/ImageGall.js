@@ -7,9 +7,8 @@ import Footer from '../components/Footer'
 
 export default function ImageGall(){
   const {travelContent} = useTravelContext()
-  const {state} = useImageContext()
+  const {state, allImages, setAllImages} = useImageContext()
   const [image, setImage] = useState();
-  const [allImages, setAllImages]= useState(`http://localhost:3000/api/image/asdasda/icons8-no-image-80.png`)
 
   const {user} = useAuthContext();
 
@@ -27,19 +26,25 @@ export default function ImageGall(){
       },
     })
     const json = await response.json()
-    setImage('')
+
+    await setAllImages(`http://localhost:3000/api/image/${state[0].item_id}/${json.imgUrl.split('\\')[1]}`)
+
+    if(json){
+      setImage('')
+    }
   }
 
   useEffect(() => {
     if(state.length > 0){
+      if(travelContent[0]._id == state[0].item_id){
+        setAllImages(`http://localhost:3000/api/image/${state[0].item_id}/${state[0].imgUrl.split('\\')[1]}`)
+        return 
+      } 
       if(travelContent[0]._id != state[0].item_id){
         setAllImages('http://localhost:3000/api/image/asdasda/icons8-no-image-80.png')
       }
-      if(travelContent[0]._id == state[0].item_id){
-        setAllImages(`http://localhost:3000/api/image/${state[0].item_id}/${state[0].imgUrl.split('\\')[1]}`)
-      } 
     }
-  },[state])
+  },[state, travelContent])
 
   return(
     <>
