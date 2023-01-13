@@ -27,10 +27,8 @@ export default function ImageGall(){
     })
     const json = await response.json()
 
-    await setAllImages(`http://localhost:3000/api/image/${state[0].item_id}/${json.imgUrl.split('\\')[1]}`)
-
-    if(json){
-      setImage('')
+    if(state){
+      await setAllImages(`http://localhost:3000/api/image/${state[0].item_id}/${json.imgUrl.split('\\')[1]}`)
     }
   }
 
