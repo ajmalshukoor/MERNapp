@@ -85,6 +85,7 @@ export default function TravelForm() {
                  />
             </div>
             <div className="form-custom">
+                <label htmlFor="image" className="form-label fs-6">Upload your memories</label>
                 <input
                 type="file"
                 title="Upload your memories"

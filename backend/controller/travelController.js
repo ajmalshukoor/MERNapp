@@ -34,7 +34,14 @@ const getOneTravel = async (req, res) =>{
 
 // POST 
 const postTravel = async (req, res) =>{
-    const imgUrl = req.file.path
+    let imgUrl
+    if(req.file){
+        imgUrl = req.file.path
+    }
+    if(!req.file){
+        imgUrl = 'uploads\\default.png'
+    }
+
     const {name, description, date} = req.body
 
     let emptyFields = [];
