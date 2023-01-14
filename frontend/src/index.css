@@ -65,7 +65,7 @@ body {
   .images-custom{
     width:80%;
     margin:auto;
-    margin-top: 10px;
+    margin-top: 130px;
   }
   .uploadform-custom{
     margin-top: 110px;
@@ -79,10 +79,6 @@ body {
   .description-custom{
     width: 100%;
   }
-  .imageGall-custom{
-    margin-top: 20px;
-    width: 100% !important;
-  }
 }
 
 @media (min-width: 768px) {
@@ -94,7 +90,7 @@ body {
   .images-custom{
     width:60%;
     margin:auto;
-    margin-top: 10px;
+    margin-top: 150px;
   }
   .uploadform-custom{
     margin-top: 70px;
@@ -113,9 +109,5 @@ body {
 
 .createddate-custom{
   top:0;
-}
-
-.imageGall-custom{
-  margin-bottom: 55px;
 }
 

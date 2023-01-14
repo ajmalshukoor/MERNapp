@@ -14,6 +14,10 @@ const travelSchema = new Schema({
         type:Date,
         required:true
     },
+    imgUrl:{
+        type: String,
+        required: true
+    },
     user_id: {
         type: String,
         required: true

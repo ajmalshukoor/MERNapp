@@ -31,7 +31,7 @@ export default function Home(){
                 {travelContent && travelContent.map(each => <TravelDetails data={each} key={each._id}/>)}
                 {(!travelContent || travelContent.length === 0)  && <h4 className="mt-5 text-center">Nothing to show!</h4>}
             </div>
-            <Footer/>
+            {/* <Footer/> */}
         </div>
     )
 }

@@ -3,9 +3,7 @@ require('dotenv').config()
 const express = require('express');
 const mongoose = require('mongoose');
 const travelRoutes = require('./routes/travelRoutes');
-const imageRoutes = require('./routes/imageRoutes');
 const userRoutes = require('./routes/userRoutes');
-const fs = require('fs');
 const path = require('path');
 
 const app = express();
@@ -13,8 +11,7 @@ const app = express();
 app.use(express.urlencoded({extended: false}))
 app.use(express.json())
 app.use('/api/travelDiary', travelRoutes)
-app.use('/api/image', imageRoutes)
-app.use('/api/image/:id/', express.static(path.join(__dirname, 'uploads')))
+app.use('/api/image/', express.static(path.join(__dirname, 'uploads')))
 app.use('/api/user', userRoutes)
 
 mongoose.connect(process.env.MONGO_URI)

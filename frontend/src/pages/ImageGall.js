@@ -1,68 +1,25 @@
 import {useEffect, useState} from 'react'
 import ImageGallery from 'react-image-gallery';
 import useTravelContext from "../hooks/useTravelContext"
-import { useAuthContext } from "../hooks/useAuthContext";
-import useImageContext from "../hooks/useImageContext";
 import Footer from '../components/Footer'
 
 export default function ImageGall(){
   const {travelContent} = useTravelContext()
-  const {state, allImages, setAllImages} = useImageContext()
-  const [image, setImage] = useState();
-
-  const {user} = useAuthContext();
-
-  const formData = new FormData()
-  formData.append('image', image)
-  formData.append('item_id', travelContent[0]._id)
-
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    const response = await fetch(`/api/image/`, {
-      method: 'POST',
-      body: formData,
-      headers: {
-        'Authorization': `Bearer ${user.token}`
-      },
-    })
-    const json = await response.json()
-
-    await setAllImages(`http://localhost:3000/api/image/${state[0].item_id}/${json.imgUrl.split('\\')[1]}`)
-
-    if(json){
-      setImage('')
-    }
-  }
+  const [allImages, setAllImages] = useState()
 
   useEffect(() => {
-    if(state.length > 0){
-      if(travelContent[0]._id == state[0].item_id){
-        setAllImages(`http://localhost:3000/api/image/${state[0].item_id}/${state[0].imgUrl.split('\\')[1]}`)
+    console.log(`http://localhost:4000/api/image/photo-gallery-1.jpg`)
+    // setAllImages('https://cdn-icons-png.flaticon.com/512/5762/5762943.png')
+      if(travelContent[0]._id){
+        setAllImages(`http://localhost:4000/api/image/${travelContent[0].imgUrl.split('\\')[1]}`)
         return 
       } 
-      if(travelContent[0]._id != state[0].item_id){
-        setAllImages('http://localhost:3000/api/image/asdasda/icons8-no-image-80.png')
-      }
-    }
-  },[state, travelContent])
+  },[travelContent])
 
   return(
     <>
     {travelContent &&
     <div className="row imageGall-custom">
-      <div className='col-9'>
-        <form encType="multipart/form-data" onSubmit={handleSubmit} className="uploadform-custom d-flex flex-column flex-md-row">
-            <input
-            type="file"
-            title="Upload your memories"
-            accept=".png, .jpg, .jpeg"
-            name="image"
-            onChange={(e) => setImage(e.target.files[0])}
-            className="form-control form-custom shadow p-3 mb-5 bg-body-tertiary rounded"
-            />
-            <button type="submit" className="uploadbutton-custom btn btn-outline-info fw-bolder ms-2 text-secondary" disabled={!image}>Upload</button>
-        </form>
-      </div>
       <div className="images-custom col-12">
         <div className="d-flex flex-column flex-sm-row">
           <div className="description-custom me-5">
@@ -76,7 +33,7 @@ export default function ImageGall(){
       </div>
     </div>
     }
-    <Footer/>
+    {/* <Footer/> */}
     </>
   )
 }

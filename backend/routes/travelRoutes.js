@@ -1,4 +1,5 @@
 const express = require("express");
+const upload = require('../middleware/upload')
 
 const {
     getTravels,
@@ -19,7 +20,7 @@ router.get('/', getTravels)
 
 router.get('/:id', getOneTravel)
 
-router.post('/', postTravel)
+router.post('/',upload.single('image'), postTravel)
 
 router.delete('/:id', deleteTravel)
 

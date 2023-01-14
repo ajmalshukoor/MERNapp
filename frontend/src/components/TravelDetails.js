@@ -16,15 +16,6 @@ export default function TravelDetails({data}){
     const {state, setState} = useImageContext()
     const {user} = useAuthContext()
 
-    // const handleClick = async () => {
-    //     const response = await fetch(`/api/travelDiary/${data._id}`, {
-    //         headers: {'Authorization': `Bearer ${user.token}`},
-    //     })
-    //     const json = await response.json()
-    //     if(response.ok){
-    //         dispatch({type:'SHOW_ONE', payload: json})
-    //     } 
-    // }
     const handleClick = async () => {
         const response = await fetch(`/api/travelDiary/${data._id}`, {
             headers: {'Authorization': `Bearer ${user.token}`},
@@ -32,12 +23,6 @@ export default function TravelDetails({data}){
         const json = await response.json()
         if(response.ok){
             dispatch({type:'SHOW_ONE', payload: json})
-
-            const imgResponse = await fetch(`/api/image/${data._id}/`, {
-                headers: {'Authorization': `Bearer ${user.token}`}
-            })
-            const imgJson = await imgResponse.json()
-            setState(imgJson)
         } 
     }
 
@@ -53,7 +38,7 @@ export default function TravelDetails({data}){
                     <span className="col-1 mb-3 ms-3 material-symbols-outlined py-1 px-0 text-center delete-custom" onClick={handleShow}>Delete</span>
                 </div>
                 <div className="d-flex flex-row justify-content-between">
-                    <p className="card-text mt-3">{data.description.slice(0,70)+"...."}</p>
+                    <p className="card-text mt-3">{data.description.slice(0,50)+"...."}</p>
                     <Link className="material-symbols-outlined text-secondary arrow-custom text-decoration-none mt-5 ms-5" to={`/${data._id}`} onClick={handleClick}>arrow_forward</Link>
                 </div>
                 {/* <a href="#" className="card-link">Card link</a> */}

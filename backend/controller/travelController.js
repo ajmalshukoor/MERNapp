@@ -34,7 +34,9 @@ const getOneTravel = async (req, res) =>{
 
 // POST 
 const postTravel = async (req, res) =>{
+    const imgUrl = req.file.path
     const {name, description, date} = req.body
+
     let emptyFields = [];
     
     if(!name){
@@ -46,13 +48,16 @@ const postTravel = async (req, res) =>{
     if(!date){
         emptyFields.push('date')
     }
+    if(!imgUrl){
+        emptyFields.push('imgUrl')
+    }
     if(emptyFields.length > 0){
         return res.status(400).json({error: 'Please fill in all fields', emptyFields})
     }
     
     try{
         const user_id = req.user._id
-        const travel = await travelModel.create({name, description, date, user_id})
+        const travel = await travelModel.create({name, description, date, imgUrl, user_id})
         res.status(200).json(travel)
     }
     catch(err){
