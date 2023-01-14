@@ -20,7 +20,7 @@ router.get('/', getTravels)
 
 router.get('/:id', getOneTravel)
 
-router.post('/',upload.single('image'), postTravel)
+router.post('/', upload.single('image'), postTravel)
 
 router.delete('/:id', deleteTravel)
 

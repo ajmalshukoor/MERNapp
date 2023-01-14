@@ -27,7 +27,7 @@ export default function ImageGall(){
             <p>{travelContent[0].description}</p>
           </div>
           {/* <ImageGallery items={allImages}/> */}
-          <img src={allImages} className="imageGall-custom w-50 border border-info"></img>
+          <img src={allImages} className="imageGall-custom w-50"></img>
         </div>
       </div>
     </div>
