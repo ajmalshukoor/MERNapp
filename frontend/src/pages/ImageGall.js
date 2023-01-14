@@ -8,10 +8,9 @@ export default function ImageGall(){
   const [allImages, setAllImages] = useState()
 
   useEffect(() => {
-    console.log(`http://localhost:4000/api/image/photo-gallery-1.jpg`)
-    // setAllImages('https://cdn-icons-png.flaticon.com/512/5762/5762943.png')
+    setAllImages('https://cdn-icons-png.flaticon.com/512/5762/5762943.png')
       if(travelContent[0]._id){
-        setAllImages(`http://localhost:4000/api/image/${travelContent[0].imgUrl.split('\\')[1]}`)
+        setAllImages(`http://localhost:3000/api/image/${travelContent[0].imgUrl.split('\\')[1]}`)
         return 
       } 
   },[travelContent])
