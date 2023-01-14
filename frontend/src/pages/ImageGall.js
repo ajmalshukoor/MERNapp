@@ -6,7 +6,7 @@ import Footer from '../components/Footer'
 export default function ImageGall(){
   const {travelContent} = useTravelContext()
   const [allImages, setAllImages] = useState()
-
+  
   useEffect(() => {
     setAllImages('https://cdn-icons-png.flaticon.com/512/5762/5762943.png')
       if(travelContent[0]._id){
