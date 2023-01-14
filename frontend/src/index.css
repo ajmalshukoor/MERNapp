@@ -1,3 +1,5 @@
+@import "~react-datepicker/dist/react-datepicker.css";
+@import "~react-image-gallery/styles/css/image-gallery.css";
 
 body {
   font-size: 12px;
@@ -11,7 +13,7 @@ body {
 }
 
 .card-custom{
-  font-size: 10px;
+  font-size: 13px;
 }
 
 .card-header{
@@ -19,7 +21,7 @@ body {
 }
 
 .cards-custom{
-  margin-top: 55px;
+  margin-top: 60px;
 }
 
 .btn{
@@ -31,14 +33,51 @@ body {
   background: #f1f1f1;
   border-radius: 10%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
 }
 
+.arrow-custom:hover{
+  cursor: pointer;
+}
+
+.form-custom{
+  margin-bottom:-20px;
+  width: 80%;
+}
+
+.react-datepicker-popper{
+  margin-top: -45px;
+}
 @media (max-width: 768px) {
   .auth-custom{
     margin-top: 30%;
     width: 65%;
     height: 50%;
+    margin-bottom: 340px;
+  }
+  .form-custom{
+    margin-bottom:-20px;
+    width: 100%
+  }
+  .cards-custom{
+    margin: 40px 40px 40px 35px;
+    width: 85%;
+  }
+  .images-custom{
+    width:80%;
+    margin:auto;
+    margin-top: 130px;
+  }
+  .uploadform-custom{
+    margin-top: 110px;
+    width: 100%;
+    margin-left: 20%;
+  }
+  .uploadbutton-custom{
+    margin-top: -30px !important;
+    margin-bottom: 20px;
+  }
+  .description-custom{
+    width: 100%;
   }
 }
 
@@ -46,8 +85,29 @@ body {
   .auth-custom{
     margin-top: 12%;
     width: 30%;
-}}
+    margin-bottom: 85px;
+  }
+  .images-custom{
+    width:60%;
+    margin:auto;
+    margin-top: 150px;
+  }
+  .uploadform-custom{
+    margin-top: 70px;
+    width: 60%;
+    margin-left: 40%;
+  }
+  .description-custom{
+    width: 70%;
+  }
+}
 
-/* @media (max-width: 500px){
+.uploadbutton-custom{
+  height: 55px;
+  margin-top: 3px;
+}
 
-} */
+.createddate-custom{
+  top:0;
+}
+

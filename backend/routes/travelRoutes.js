@@ -1,4 +1,6 @@
 const express = require("express");
+const upload = require('../middleware/upload')
+
 const {
     getTravels,
     getOneTravel,
@@ -18,11 +20,10 @@ router.get('/', getTravels)
 
 router.get('/:id', getOneTravel)
 
-router.post('/', postTravel)
+router.post('/',upload.single('image'), postTravel)
 
 router.delete('/:id', deleteTravel)
 
 router.patch('/:id', patchTravel)
-
 
 module.exports = router

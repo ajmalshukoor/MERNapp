@@ -8,6 +8,10 @@ export function travelReducer(state, action){
             return {
                 travelContent: action.payload
             }
+        case 'SHOW_ONE':
+            return {
+                travelContent: [action.payload]
+            }
         case 'CREATE_ONE':
             if(!state.travelContent){
                 return {

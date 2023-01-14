@@ -4,13 +4,14 @@ const express = require('express');
 const mongoose = require('mongoose');
 const travelRoutes = require('./routes/travelRoutes');
 const userRoutes = require('./routes/userRoutes');
+const path = require('path');
 
 const app = express();
-
 //DONT switch positions of these middleware
+app.use(express.urlencoded({extended: false}))
 app.use(express.json())
-app.use((req, res, next) => next())
 app.use('/api/travelDiary', travelRoutes)
+app.use('/api/image/', express.static(path.join(__dirname, 'uploads')))
 app.use('/api/user', userRoutes)
 
 mongoose.connect(process.env.MONGO_URI)
@@ -18,6 +19,7 @@ mongoose.connect(process.env.MONGO_URI)
     console.log("connected to databse")
     app.listen(4000, () => {
         console.log('listening to port', process.env.PORT)
+        console.log(path.join(__dirname, 'uploads'))
     })
 })
 .catch((error) => {

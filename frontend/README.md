@@ -68,3 +68,50 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+import ImageGallery from 'react-image-gallery';
+
+export default function ImageGall(){
+  const images = [
+    {
+      original: 'https://picsum.photos/id/1018/1000/600/',
+      thumbnail: 'https://picsum.photos/id/1018/250/150/',
+    },
+    {
+      original: 'https://picsum.photos/id/1015/1000/600/',
+      thumbnail: 'https://picsum.photos/id/1015/250/150/',
+    },
+    {
+      original: 'https://picsum.photos/id/1019/1000/600/',
+      thumbnail: 'https://picsum.photos/id/1019/250/150/',
+    },
+  ];
+  return(
+    <div className="row">
+      <div className='col-9'>
+        <form encType="multipart/form-data" className="uploadform-custom d-flex flex-row">
+            <input
+            type="file"
+            title="Upload your memories"
+            accept=".png, .jpg, .jpeg"
+            name="photo"
+            className="form-control form-custom shadow p-3 mb-5 bg-body-tertiary rounded"
+            />
+            <button type="submit" className="uploadbutton-custom btn btn-outline-info fw-bolder ms-2 text-secondary">Upload</button>
+        </form>
+      </div>
+      <div className="images-custom col-12">
+        <div className="d-flex flex-column flex-sm-row">
+          <div className="description-custom me-5">
+            <h2 className="text-center text-secondary">Kolukkumalai</h2>
+            <p className="text-center text-secondary mb-2">Visited: 01/20/2020 <br></br>Created: 01/20/2020</p>
+            <p>Kolukkumalai is the world’s highest elevation tea plantation at 7900 feet msl. Kolukkumalai is without argument one of the world’s most beautiful scenic destinations. Started in the early 1900s the estate produces tea using the orthodox method in the time-tested tea factory.</p>
+          </div>
+          <ImageGallery items={images}/>
+        </div>
+      </div>
+    </div>
+  )
+}
