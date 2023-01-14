@@ -5,7 +5,31 @@ import Footer from '../components/Footer'
 
 export default function ImageGall(){
   const {travelContent} = useTravelContext()
-  const [allImages, setAllImages] = useState()
+  const {state, allImages, setAllImages} = useImageContext()
+  const [image, setImage] = useState();
+
+  const {user} = useAuthContext();
+
+  const formData = new FormData()
+  formData.append('image', image)
+  formData.append('item_id', travelContent[0]._id)
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const response = await fetch(`/api/image/`, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Authorization': `Bearer ${user.token}`
+      },
+    })
+    const json = await response.json()
+
+    if(state){
+      await setAllImages(`http://localhost:3000/api/image/${state[0].item_id}/${json.imgUrl.split('\\')[1]}`)
+    }
+  }
+>>>>>>> cba330e8ce50c471cbae5ea5a48ba242a3ffbd25
 
   useEffect(() => {
     console.log(`http://localhost:4000/api/image/photo-gallery-1.jpg`)
